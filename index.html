@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <title>Gesture Interactions - A-Frame & AR.js</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="styles.css" />
+
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <script src="gesture-detector.js"></script>
+    <script src="gesture-handler.js"></script>
+  </head>
+
+  <body>
+    <a-scene
+      arjs
+      embedded
+      renderer="logarithmicDepthBuffer: true;"
+      vr-mode-ui="enabled: false"
+      gesture-detector
+      id="scene"
+    >
+      <a-assets>
+        <a-asset-item
+          id="Lightsaber"
+          src="https://cdn.glitch.com/9a7a9623-8871-40b6-a2da-9b79d6e7672d%2Fcaballo%202.glb?v=1618813853487"
+        >
+        </a-asset-item>
+      </a-assets>
+
+      <a-marker
+        type="pattern"
+        preset="custom"
+        url="https://cdn.glitch.com/9a7a9623-8871-40b6-a2da-9b79d6e7672d%2Fpattern-catch%20the%20unicorn%20(1).patt?v=1618969611405"
+        raycaster="objects: .clickable"
+        emitevents="true"
+        cursor="fuse: false; rayOrigin: mouse;"
+        id="markerA"
+      >
+        <a-entity
+          id="bowser-model"
+          gltf-model="https://cdn.glitch.com/9a7a9623-8871-40b6-a2da-9b79d6e7672d%2Fcaballo%202.glb?v=1618813853487"
+          position="0 0 0"
+          scale="0.2 0.2 0.2"
+          rotation="-90 0 0"
+          class="clickable"
+          gesture-handler
+        >
+        </a-entity>
+      </a-marker>
+      <a-entity camera></a-entity>
+    </a-scene>
+  </body>
+</html>
